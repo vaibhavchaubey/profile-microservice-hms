@@ -19,7 +19,7 @@ public class DoctorDTO {
     private LocalDate dob;
     private String phone;
     private String address;
-    private String licenseNumber;
+    private String licenseNo;
     private String specialization;
     private String Department;
     private Integer totalExp;
@@ -32,7 +32,7 @@ public class DoctorDTO {
                 this.dob,
                 this.phone,
                 this.address,
-                this.licenseNumber,
+                this.licenseNo,
                 this.specialization,
                 this.Department,
                 this.totalExp);

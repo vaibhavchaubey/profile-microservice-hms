@@ -30,7 +30,7 @@ public class Doctor {
     private String phone;
     private String address;
     @Column(unique = true)
-    private String licenseNumber;
+    private String licenseNo;
     private String specialization;
     private String Department;
     private Integer totalExp;
@@ -43,7 +43,7 @@ public class Doctor {
                 this.dob,
                 this.phone,
                 this.address,
-                this.licenseNumber,
+                this.licenseNo,
                 this.specialization,
                 this.Department,
                 this.totalExp);

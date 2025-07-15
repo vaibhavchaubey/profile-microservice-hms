@@ -15,12 +15,17 @@ public class DoctorServiceImpl implements DoctorService {
     private DoctorRepository doctorRepository;
 
     @Override
-    public void addDoctor(DoctorDTO doctorDTO) throws HmsException {
-        if (doctorRepository.existsById(doctorDTO.getId())) {
+    public Long addDoctor(DoctorDTO doctorDTO) throws HmsException {
+        if (doctorDTO.getEmail() != null && doctorRepository.findByEmail(doctorDTO.getEmail()).isPresent()) {
             throw new HmsException("DOCTOR_ALREADY_EXISTS");
         }
 
-        doctorRepository.save(doctorDTO.toEntity());
+        if (doctorDTO.getLicenseNo() != null
+                && doctorRepository.findByLicenseNo(doctorDTO.getLicenseNo()).isPresent()) {
+            throw new HmsException("DOCTOR_ALREADY_EXISTS");
+        }
+
+        return doctorRepository.save(doctorDTO.toEntity()).getId();
     }
 
     @Override
