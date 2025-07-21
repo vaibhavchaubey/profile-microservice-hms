@@ -1,7 +1,5 @@
 package com.hms.profile.service;
 
-import javax.print.Doc;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

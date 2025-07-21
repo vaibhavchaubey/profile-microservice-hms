@@ -1,12 +1,9 @@
 package com.hms.profile.service;
 
-import java.util.Optional;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.hms.profile.dto.PatientDTO;
-import com.hms.profile.entity.Patient;
 import com.hms.profile.exception.HmsException;
 import com.hms.profile.repository.PatientRepository;
 
