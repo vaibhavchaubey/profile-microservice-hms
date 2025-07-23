@@ -8,11 +8,14 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.hms.profile.dto.DoctorDTO;
+import com.hms.profile.dto.PatientDTO;
+import com.hms.profile.entity.Doctor;
 import com.hms.profile.exception.HmsException;
 import com.hms.profile.service.DoctorService;
 
@@ -32,6 +35,12 @@ public class DoctorAPI {
     @GetMapping("/get/{id}")
     public ResponseEntity<DoctorDTO> getDoctorById(@PathVariable Long id) throws HmsException {
         return new ResponseEntity<>(doctorService.getDoctorById(id), HttpStatus.OK);
+    }
+
+    @PutMapping("/update")
+    public ResponseEntity<DoctorDTO> updateDoctor(@RequestBody DoctorDTO doctorDTO)
+            throws HmsException {
+        return new ResponseEntity<>(doctorService.updateDoctor(doctorDTO), HttpStatus.OK);
     }
 
 }

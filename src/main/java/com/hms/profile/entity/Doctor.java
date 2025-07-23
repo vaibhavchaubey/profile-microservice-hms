@@ -32,7 +32,7 @@ public class Doctor {
     @Column(unique = true)
     private String licenseNo;
     private String specialization;
-    private String Department;
+    private String department;
     private Integer totalExp;
 
     public DoctorDTO toDTO() {
@@ -45,7 +45,7 @@ public class Doctor {
                 this.address,
                 this.licenseNo,
                 this.specialization,
-                this.Department,
+                this.department,
                 this.totalExp);
     }
 

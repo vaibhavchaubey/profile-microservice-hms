@@ -21,7 +21,7 @@ public class DoctorDTO {
     private String address;
     private String licenseNo;
     private String specialization;
-    private String Department;
+    private String department;
     private Integer totalExp;
 
     public Doctor toEntity() {
@@ -34,7 +34,7 @@ public class DoctorDTO {
                 this.address,
                 this.licenseNo,
                 this.specialization,
-                this.Department,
+                this.department,
                 this.totalExp);
     }
 }

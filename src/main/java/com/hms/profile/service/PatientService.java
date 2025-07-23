@@ -8,4 +8,6 @@ public interface PatientService {
 
     public PatientDTO getPatientById(Long id) throws HmsException;
 
+    public PatientDTO updatePatient(PatientDTO patientDTO) throws HmsException;
+
 }

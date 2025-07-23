@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.hms.profile.dto.DoctorDTO;
+import com.hms.profile.dto.PatientDTO;
 import com.hms.profile.exception.HmsException;
 import com.hms.profile.repository.DoctorRepository;
 
@@ -30,6 +31,14 @@ public class DoctorServiceImpl implements DoctorService {
     public DoctorDTO getDoctorById(Long id) throws HmsException {
         return doctorRepository.findById(id)
                 .orElseThrow(() -> new HmsException("DOCTOR_NOT_FOUND")).toDTO();
+    }
+
+    @Override
+    public DoctorDTO updateDoctor(DoctorDTO doctorDTO) throws HmsException {
+        doctorRepository.findById(doctorDTO.getId())
+                .orElseThrow(() -> new HmsException("DOCTOR_NOT_FOUND"));
+
+        return doctorRepository.save(doctorDTO.toEntity()).toDTO();
     }
 
 }
