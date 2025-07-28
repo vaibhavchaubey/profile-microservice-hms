@@ -1,10 +1,7 @@
 package com.hms.profile.utility;
 
-import java.lang.reflect.Method;
 import java.time.LocalDateTime;
 import java.util.stream.Collectors;
-
-import javax.swing.SpringLayout.Constraints;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.env.Environment;
@@ -27,7 +24,7 @@ public class ExceptionControllerAdvice {
     Environment environment;
 
     /*
-     * This class can be used to handle exceptions globally for the User
+     * This class can be used to handle exceptions globally for the Profile
      * microservice.
      * You can define methods here to handle specific exceptions and return
      * appropriate responses.
@@ -45,7 +42,7 @@ public class ExceptionControllerAdvice {
 
     /*
      * This method can be used to handle HmsException exceptions globally for the
-     * User microservice.
+     * Profile microservice.
      */
     @ExceptionHandler(HmsException.class)
     public ResponseEntity<ErrorInfo> HmsExceptionHandler(HmsException e) {
