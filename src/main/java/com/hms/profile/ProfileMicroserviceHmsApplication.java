@@ -9,5 +9,5 @@ public class ProfileMicroserviceHmsApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(ProfileMicroserviceHmsApplication.class, args);
 	}
-
+	
 }
