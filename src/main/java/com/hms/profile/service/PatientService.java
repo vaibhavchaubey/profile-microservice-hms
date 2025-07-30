@@ -10,4 +10,6 @@ public interface PatientService {
 
     public PatientDTO updatePatient(PatientDTO patientDTO) throws HmsException;
 
+    public Boolean patientExists(Long id) throws HmsException;
+
 }
