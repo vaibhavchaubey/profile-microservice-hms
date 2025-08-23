@@ -1,9 +1,12 @@
 package com.hms.profile.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.hms.profile.dto.DoctorDTO;
+import com.hms.profile.dto.DoctorDropdown;
 import com.hms.profile.dto.PatientDTO;
 import com.hms.profile.exception.HmsException;
 import com.hms.profile.repository.DoctorRepository;
@@ -44,6 +47,11 @@ public class DoctorServiceImpl implements DoctorService {
     @Override
     public Boolean doctorExists(Long id) throws HmsException {
         return doctorRepository.existsById(id);
+    }
+
+    @Override
+    public List<DoctorDropdown> getDoctorDropdowns() throws HmsException {
+        return doctorRepository.findAllDoctorDropdowns();
     }
 
 }

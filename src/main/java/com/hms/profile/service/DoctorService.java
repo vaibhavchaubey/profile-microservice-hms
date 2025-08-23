@@ -1,6 +1,9 @@
 package com.hms.profile.service;
 
+import java.util.List;
+
 import com.hms.profile.dto.DoctorDTO;
+import com.hms.profile.dto.DoctorDropdown;
 import com.hms.profile.exception.HmsException;
 
 public interface DoctorService {
@@ -12,5 +15,7 @@ public interface DoctorService {
     public DoctorDTO updateDoctor(DoctorDTO doctorDTO) throws HmsException;
 
     public Boolean doctorExists(Long id) throws HmsException;
+
+    public List<DoctorDropdown> getDoctorDropdowns() throws HmsException;
 
 }
