@@ -17,4 +17,6 @@ public interface PatientService {
 
     public List<PatientDropdown> getPatientsById(List<Long> ids) throws HmsException;
 
+    public List<PatientDTO> getAllPatients() throws HmsException;
+
 }

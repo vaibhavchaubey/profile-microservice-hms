@@ -7,6 +7,8 @@ import org.springframework.stereotype.Service;
 
 import com.hms.profile.dto.DoctorDTO;
 import com.hms.profile.dto.DoctorDropdown;
+import com.hms.profile.entity.Doctor;
+import com.hms.profile.entity.Patient;
 import com.hms.profile.exception.HmsException;
 import com.hms.profile.repository.DoctorRepository;
 
@@ -56,5 +58,10 @@ public class DoctorServiceImpl implements DoctorService {
     @Override
     public List<DoctorDropdown> getDoctorsById(List<Long> ids) throws HmsException {
         return doctorRepository.findAllDoctorDropdownsByIds(ids);
+    }
+
+    @Override
+    public List<DoctorDTO> getAllDoctors() throws HmsException {
+        return ((List<Doctor>) doctorRepository.findAll()).stream().map(doctor -> doctor.toDTO()).toList();
     }
 }
