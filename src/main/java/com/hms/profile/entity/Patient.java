@@ -26,6 +26,7 @@ public class Patient {
     @Column(unique = true)
     private String email;
     private LocalDate dob;
+    private Long profilePictureId;
     private String phone;
     private String address;
     @Column(unique = true)
@@ -40,6 +41,7 @@ public class Patient {
                 this.name,
                 this.email,
                 this.dob,
+                this.profilePictureId,
                 this.phone,
                 this.address,
                 this.aadharNo,

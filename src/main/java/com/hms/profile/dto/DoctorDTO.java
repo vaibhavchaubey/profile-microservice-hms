@@ -17,6 +17,7 @@ public class DoctorDTO {
     private String name;
     private String email;
     private LocalDate dob;
+    private Long profilePictureId;
     private String phone;
     private String address;
     private String licenseNo;
@@ -30,6 +31,7 @@ public class DoctorDTO {
                 this.name,
                 this.email,
                 this.dob,
+                this.profilePictureId,
                 this.phone,
                 this.address,
                 this.licenseNo,

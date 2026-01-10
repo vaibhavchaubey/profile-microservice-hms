@@ -2,9 +2,7 @@ package com.hms.profile.entity;
 
 import java.time.LocalDate;
 
-import com.hms.profile.dto.BloodGroup;
 import com.hms.profile.dto.DoctorDTO;
-import com.hms.profile.dto.PatientDTO;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -27,6 +25,7 @@ public class Doctor {
     @Column(unique = true)
     private String email;
     private LocalDate dob;
+    private Long profilePictureId;
     private String phone;
     private String address;
     @Column(unique = true)
@@ -41,6 +40,7 @@ public class Doctor {
                 this.name,
                 this.email,
                 this.dob,
+                this.profilePictureId,
                 this.phone,
                 this.address,
                 this.licenseNo,

@@ -18,6 +18,7 @@ public class PatientDTO {
     private String name;
     private String email;
     private LocalDate dob;
+    private Long profilePictureId;
     private String phone;
     private String address;
     private String aadharNo;
@@ -31,6 +32,7 @@ public class PatientDTO {
                 this.name,
                 this.email,
                 this.dob,
+                this.profilePictureId,
                 this.phone,
                 this.address,
                 this.aadharNo,
