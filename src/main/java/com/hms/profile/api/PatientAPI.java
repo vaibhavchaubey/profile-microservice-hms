@@ -39,6 +39,11 @@ public class PatientAPI {
         return new ResponseEntity<>(patientService.getPatientById(id), HttpStatus.OK);
     }
 
+    @GetMapping("/getProfilePictureId/{id}")
+    public ResponseEntity<Long> getProfilePictureId(@PathVariable Long id) throws HmsException {
+        return new ResponseEntity<>(patientService.getPatientById(id).getProfilePictureId(), HttpStatus.OK);
+    }
+
     @PutMapping("/update")
     public ResponseEntity<PatientDTO> updatePatient(@RequestBody PatientDTO patientDTO)
             throws HmsException {
