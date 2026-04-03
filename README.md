@@ -46,17 +46,18 @@ profile-microservice-hms is a Spring Boot microservice for managing doctor and p
 
 ## ⚙️ Getting Started (Installation & Setup)
 
-`ash
+```bash
 git clone <REPO_URL>
 cd profile-microservice-hms
-`
+```
 
 ### 1. Configure Database
 
 Set environment variables or edit src/main/resources/application.properties:
 
 - DB_URL (default jdbc:mysql://localhost:3306/profiledb)
-- DB_USERNAME (default oot)
+- DB_USERNAME (default 
+oot)
 - DB_PASSWORD (default @Vaibhav777)
 
 ### 2. Configure Eureka
@@ -65,10 +66,10 @@ Set environment variables or edit src/main/resources/application.properties:
 
 ### 3. Run Locally
 
-`ash
+```bash
 ./mvnw clean package
 ./mvnw spring-boot:run
-`
+```
 
 Default service port: 9100 (override with PORT env var).
 
@@ -95,27 +96,27 @@ Default service port: 9100 (override with PORT env var).
 
 ## 🧪 Tests
 
-`ash
+```bash
 ./mvnw test
-`
+```
 
 ## 🚢 Docker (Optional)
 
 Build image:
 
-`ash
+```bash
 docker build -t profile-microservice-hms:latest .
-`
+```
 
 Run container:
 
-`ash
+```bash
 docker run -e DB_URL=jdbc:mysql://host.docker.internal:3306/profiledb \
   -e DB_USERNAME=root -e DB_PASSWORD=yourpass \
   -e EUREKA_SERVER_URL=http://host.docker.internal:8761/eureka/ \
   -e PORT=9100 \
   -p 9100:9100 profile-microservice-hms:latest
-`
+```
 
 ## 📦 Project Metadata
 
