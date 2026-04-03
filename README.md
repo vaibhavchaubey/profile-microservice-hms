@@ -1,161 +1,135 @@
-# Profile Microservice for Hospital Management System
+﻿# Profile Microservice HMS
 
-[![Build](https://img.shields.io/badge/build-unknown-lightgrey.svg)](https://github.com/your-org/your-repo/actions)  
-[![Maven Central](https://img.shields.io/badge/maven-3.8+-blue.svg)](https://maven.apache.org/)  
-[![License](https://img.shields.io/badge/license-UNLICENSED-lightgrey.svg)](LICENSE)
+[![Java](https://img.shields.io/badge/Java-21-orange)](https://openjdk.org/projects/jdk/21/)
+[![Spring Boot](https://img.shields.io/badge/Spring%20Boot-3.5.3-brightgreen)](https://spring.io/projects/spring-boot)
+[![Spring Cloud](https://img.shields.io/badge/Spring%20Cloud-2025.0.0-blue)](https://spring.io/projects/spring-cloud)
+[![MySQL](https://img.shields.io/badge/MySQL-8-blue)](https://www.mysql.com/)
+[![Docker](https://img.shields.io/badge/Docker-Ready-blue)](https://www.docker.com/)
+[![Eureka](https://img.shields.io/badge/Netflix%20Eureka-Client-lightgrey)](https://cloud.spring.io/spring-cloud-netflix/)
 
-## What the project does
+## 🚀 What the Project Does
 
-`profile-microservice-hms` is a Spring Boot-based microservice that manages doctor and patient profile data for a Hospital Management System (HMS). It provides a REST API for CRUD operations, cross-origin support, validation, data persistence via JPA/MySQL, and discovery via Eureka.
+profile-microservice-hms is a Spring Boot microservice for managing doctor and patient profiles in a Hospital Management System (HMS). It provides REST APIs to create, read, update, and validate profiles and exposes dropdowns for client-side selection in distributed workflows. It is designed to be used as a standalone profile domain service and integrated with appointment, billing, and other HMS microservices using Spring Cloud Eureka service discovery. It supports database-backed persistence, security, CORS, and can run in Docker containers for scalable deployments.
 
-## Why this project is useful
+## 💡 Why the Project is Useful
 
-- Centralized profile management for doctors and patients
-- Fully RESTful endpoints for the profile domain
-- Built-in data validation and exception handling (`HmsException`)
-- Integrates with Spring Cloud Eureka for service discovery
-- Easy to extend through `DoctorService` / `PatientService` interfaces
+- Separates profile domain responsibilities (doctors, patients) from other HMS concerns.
+- Enables centralized profile validation (exists, getProfilePictureId) for consistent cross-service behavior.
+- Provides dropdown and batch lookup endpoints for UI dropdowns or bulk queries.
+- Lightweight, fault-resilient API that pairs into microservice ecosystems with Eureka.
 
-## Key features
+## ✨ Key Features
 
-- Doctor endpoints:
-  - `POST /profile/doctor/add`
-  - `GET /profile/doctor/get/{id}`
-  - `GET /profile/doctor/getProfilePictureId/{id}`
-  - `PUT /profile/doctor/update`
-  - `GET /profile/doctor/exists/{id}`
-  - `GET /profile/doctor/dropdowns`
-  - `GET /profile/doctor/getDoctorsById?ids=...`
-  - `GET /profile/doctor/getAll`
+- Implemented doctor CRUD API: add, get by ID, update, exists, get all, dropdown list, get-by-IDs.
+- Implemented patient CRUD API: add, get by ID, update, exists, get all, dropdown list, get-by-IDs.
+- Designed to return profile picture ID separately for efficient image loading.
+- Built with validation, consistent HTTP status codes, and exception handling via a shared HmsException model.
+- Configured CORS and Eureka client support for distributed deployment.
 
-- Patient endpoints:
-  - `POST /profile/patient/add`
-  - `GET /profile/patient/get/{id}`
-  - `GET /profile/patient/getProfilePictureId/{id}`
-  - `PUT /profile/patient/update`
-  - `GET /profile/patient/exists/{id}`
-  - `GET /profile/patient/getPatientsById?ids=...`
-  - `GET /profile/patient/getAll`
+## 🛠️ Tech Stack
 
-- Configurable via `application.properties` and environment variables:
-  - `server.port` (default `9100`)
-  - `DB_URL`, `DB_USERNAME`, `DB_PASSWORD`
-  - `EUREKA_SERVER_URL`
-  - `CORS_ALLOWED_ORIGINS`
+- Frontend: Not included (API-only microservice)
+- Backend:
+  - Java 21
+  - Spring Boot 3.5.3
+  - Spring Web
+  - Spring Data JPA
+  - Spring Security
+  - Spring Validation
+  - Spring Cloud Netflix Eureka Client
+- Database:
+  - MySQL (via mysql-connector-j)
+- DevOps / Tools:
+  - Maven
+  - Docker (Dockerfile present)
+  - Spring Boot Maven Plugin
 
-## Tech stack
+## ⚙️ Getting Started (Installation & Setup)
 
-- Java 21
-- Spring Boot 3.5.3
-- Spring Data JPA
-- Spring Security
-- Spring Validation
-- Spring Cloud Netflix Eureka (client)
-- MySQL
-- Lombok
-- Maven
-
-## How users can get started
-
-### Prerequisites
-
-- Java 21
-- Maven 3.8+
-- MySQL server
-- Eureka server (for discovery)
-
-### Clone repository
-
-```bash
-git clone <repo-url>
+`ash
+git clone <REPO_URL>
 cd profile-microservice-hms
-```
+`
 
-### Configure environment
+### 1. Configure Database
 
-Create a `.env` or set environment variables as needed:
+Set environment variables or edit src/main/resources/application.properties:
 
-- `PORT` (optional, default 9100)
-- `DB_URL` (default `jdbc:mysql://localhost:3306/profiledb`)
-- `DB_USERNAME` (default `root`)
-- `DB_PASSWORD` (secure value)
-- `EUREKA_SERVER_URL` (default `http://localhost:8761/eureka/`)
-- `CORS_ALLOWED_ORIGINS` (default `http://localhost:5173`)
+- DB_URL (default jdbc:mysql://localhost:3306/profiledb)
+- DB_USERNAME (default oot)
+- DB_PASSWORD (default @Vaibhav777)
 
-Check `src/main/resources/application.properties` for the canonical defaults.
+### 2. Configure Eureka
 
-### Run
+- EUREKA_SERVER_URL default: http://localhost:8761/eureka/
 
-```bash
+### 3. Run Locally
+
+`ash
 ./mvnw clean package
 ./mvnw spring-boot:run
-```
+`
 
-or
+Default service port: 9100 (override with PORT env var).
 
-```bash
-mvn clean package
-mvn spring-boot:run
-```
+## 🧩 API Endpoints
 
-### Verify
+### Doctor APIs (Base /profile/doctor)
+- POST /profile/doctor/add
+- GET /profile/doctor/get/{id}
+- GET /profile/doctor/getProfilePictureId/{id}
+- PUT /profile/doctor/update
+- GET /profile/doctor/exists/{id}
+- GET /profile/doctor/dropdowns
+- GET /profile/doctor/getDoctorsById?ids=1,2,3
+- GET /profile/doctor/getAll
 
-- `http://localhost:9100/profile/doctor/getAll`
-- `http://localhost:9100/profile/patient/getAll`
+### Patient APIs (Base /profile/patient)
+- POST /profile/patient/add
+- GET /profile/patient/get/{id}
+- GET /profile/patient/getProfilePictureId/{id}
+- PUT /profile/patient/update
+- GET /profile/patient/exists/{id}
+- GET /profile/patient/getPatientsById?ids=1,2,3
+- GET /profile/patient/getAll
 
-## Example requests
+## 🧪 Tests
 
-### Add doctor
-
-```bash
-curl -X POST http://localhost:9100/profile/doctor/add \
-  -H "Content-Type: application/json" \
-  -d '{"id":null,"name":"Dr. John","specialization":"Cardiology","profilePictureId":1}'
-```
-
-### Get patient
-
-```bash
-curl http://localhost:9100/profile/patient/get/1
-```
-
-## Where users can get help
-
-- Open an issue in this repository
-- Check existing project docs and API specs in the repo
-- Contact maintainers via the project README or issue tracker
-
-## Who maintains and contributes
-
-Maintained by the project team in this repository.  
-Please follow standard GitHub collaboration:
-
-- Fork the repository
-- Create a feature branch
-- Open a pull request
-
-> Note: no `CONTRIBUTING.md` exists in this repository; add one in `docs/CONTRIBUTING.md` if you want curated contribution guidelines.
-
-## Project structure
-
-- `src/main/java/com/hms/profile/api`: REST controllers
-- `src/main/java/com/hms/profile/dto`: data transfer objects
-- `src/main/java/com/hms/profile/entity`: JPA entities
-- `src/main/java/com/hms/profile/service`: service layer and implementations
-- `src/main/java/com/hms/profile/repository`: Spring Data repositories
-- `src/main/java/com/hms/profile/config`: CORS/security configuration
-- `src/main/java/com/hms/profile/utility`: exception handler and error models
-
-## Testing
-
-```bash
+`ash
 ./mvnw test
-```
+`
 
-## Release & versioning
+## 🚢 Docker (Optional)
 
-Uses Maven `0.0.1-SNAPSHOT`. Update `pom.xml` version for releases.
+Build image:
 
-## License
+`ash
+docker build -t profile-microservice-hms:latest .
+`
 
-See `LICENSE` in repository root.
+Run container:
+
+`ash
+docker run -e DB_URL=jdbc:mysql://host.docker.internal:3306/profiledb \
+  -e DB_USERNAME=root -e DB_PASSWORD=yourpass \
+  -e EUREKA_SERVER_URL=http://host.docker.internal:8761/eureka/ \
+  -e PORT=9100 \
+  -p 9100:9100 profile-microservice-hms:latest
+`
+
+## 📦 Project Metadata
+
+- Name: profile-microservice-hms
+- Description: Profile Microservice for Hospital Management System
+- Artifact: com.hms:profile-microservice-hms:0.0.1-SNAPSHOT
+
+## 🤝 Contributing
+
+1. Fork the repo
+2. Create a feature branch
+3. Add tests and run ./mvnw test
+4. Open PR with description and linked issue
+
+## 📝 License
+
+Add your open source / corporate license file at /LICENSE (e.g., Apache-2.0, MIT, etc.)
